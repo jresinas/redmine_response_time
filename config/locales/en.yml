@@ -1,0 +1,12 @@
+en:
+  project_module_response_time: Response time
+  permission_view_response_time: View response time
+  response_time:
+    label_accepted_response_time: Accepted response time
+    label_resolved_response_time: Resolved response time
+    label_blocked_response_time: Blocked response time
+    label_refused_response_time: Refused response time
+    label_accepted_status: Accepted status
+    label_resolved_status: Resolved status
+    label_blocked_status: Blocked status
+    label_refused_status: Refused status

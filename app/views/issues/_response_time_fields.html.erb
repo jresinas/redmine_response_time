@@ -1,0 +1,13 @@
+<% if @project.enabled_module('response_time') and 
+	User.current.allowed_to?(:view_response_time, @project) and 
+	Setting.plugin_redmine_response_time[:trackers].present? and 
+	Setting.plugin_redmine_response_time[:trackers].include?(@issue.tracker_id.to_s) %>
+<tr>
+<%= render_accepted_response_time(@issue) %>
+<%= render_resolved_response_time(@issue) %> 
+</tr>
+<tr>
+<%= render_blocked_response_time(@issue) %>
+<%= render_refused_response_time(@issue) %>
+</tr>
+<% end %>
