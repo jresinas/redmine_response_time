@@ -9,46 +9,50 @@ module ResponseTime
         unloadable  # Send unloadable so it will be reloaded in development
 
         def render_accepted_response_time(issue)
-          html = ""
-          html << "<th>" + l(:"response_time.label_accepted_response_time") + ":</th>"
+          html = "<div class='attribute'>"
+          html << "<div class='label'>" + l(:"response_time.label_accepted_response_time") + ":</div><div class='value'>"
           if issue.has_been('accepted').present?
-            html << "<td>" + l_hours((issue.has_been('accepted',1)-issue.created_on)/3600) + "</td>"
+            html << l_hours((issue.has_been('accepted',1)-issue.created_on)/3600)
           else
-            html << "<td>-</td>"
+            html << "-"
           end
+          html << "</div></div>"
           html.html_safe
         end
         
         def render_resolved_response_time(issue)
-          html = ""
-          html << "<th>" + l(:"response_time.label_resolved_response_time") + ":</th>"
+          html = "<div class='attribute'>"
+          html << "<div class='label'>" + l(:"response_time.label_resolved_response_time") + ":</div><div class='value'>"
           if issue.has_been('accepted').present? and issue.has_been('resolved').present?
-            html << "<td>" + l_hours((issue.has_been('resolved',0) - issue.has_been('accepted',1))/3600) + "</td>"
+            html << l_hours((issue.has_been('resolved',0) - issue.has_been('accepted',1))/3600)
           else
-            html << "<td>-</td>"
+            html << "-"
           end
+          html << "</div></div>"
           html.html_safe
         end
         
         def render_blocked_response_time(issue)
-          html = ""
-          html << "<th>" + l(:"response_time.label_blocked_response_time") + ":</th>"
+          html = "<div class='attribute'>"
+          html << "<div class='label'>" + l(:"response_time.label_blocked_response_time") + ":</div><div class='value'>"
           if issue.has_been('blocked').present?
-            html << "<td>" + l_hours((issue.has_been('blocked',1) - issue.created_on)/3600) + "</td>"
+            html << l_hours((issue.has_been('blocked',1) - issue.created_on)/3600)
           else
-            html << "<td>-</td>"
+            html << "-"
           end
+          html << "</div></div>"
           html.html_safe
         end
         
         def render_refused_response_time(issue)
-          html = ""
-          html << "<th>" + l(:"response_time.label_refused_response_time") + ":</th>"
+          html = "<div class='attribute'>"
+          html << "<div class='label'>" + l(:"response_time.label_refused_response_time") + ":</div><div class='value'>"
           if issue.has_been('refused').present?
-            html << "<td>" + l_hours((issue.has_been('refused',0) - issue.created_on)/3600) + "</td>"
+            html << l_hours((issue.has_been('refused',0) - issue.created_on)/3600)
           else
-            html << "<td>-</td>"
+            html << "-"
           end
+          html << "</div></div>"
           html.html_safe
         end
         
