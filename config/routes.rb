@@ -1,0 +1,2 @@
+match '/projects/:project_id/response_time_report/show', :to => 'response_time_reports#show', :via => [:get, :post]
+# match '/projects/:project_id/response_time_report/search', :to => 'response_time_reports#search', :via => [:get, :post]

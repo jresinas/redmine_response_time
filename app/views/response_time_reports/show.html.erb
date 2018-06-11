@@ -1,0 +1,26 @@
+<%= form_tag(controller: "response_time_reports", action: "show", method: :get) do %>
+  <%= label_tag('versions', l(:"rt.label_search_by_versions"))+":" %>
+  <p><%= select_tag('versions', options_from_collection_for_select(@project.versions, "id", "name", params[:versions]), :multiple => true) %></p>
+  <%= submit_tag(l(:button_submit)) %>
+<% end %>
+
+<table>
+	<tr>
+		<% rt_reports_headers.each do |header| %>
+			<th><%=header%></th>
+		<% end %>
+	</tr>
+	<% @issues.each do |issue| %>
+	<tr>
+		<% rt_reports_fields(issue).each do |field| %>
+		<td><%=field%></td>
+		<% end %>
+	</tr>
+	<% end %>
+</table>
+
+<span class="pagination"><%= pagination_links_full @issue_pages %></span>
+
+<% other_formats_links do |f| %>
+	<%= f.link_to 'CSV', :url => params %>
+<% end %>

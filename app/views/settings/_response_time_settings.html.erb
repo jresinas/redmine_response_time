@@ -5,28 +5,38 @@
 	        :multiple => true,
 	        :size => 10 %>
 </p>
+<p>
+	<label><%=l(:"rt.label_location_field")%></label>
+	 	<%= select_tag 'settings[location]',
+	        options_from_collection_for_select(IssueCustomField.order("name"), :id, :name, @settings['location']) %>
+</p>
 <div>
 	<fieldset>
 		<legend><%=l(:label_issue_status_plural)%></legend>
 		<p>
-		    <label><%=l(:"response_time.label_accepted_status")%></label>
+		    <label><%=l(:"rt.label_accepted_status")%></label>
 		    <%= select_tag 'settings[accepted_status]',
 		        options_from_collection_for_select(IssueStatus.order("name"), :id, :name, @settings['accepted_status']) %>
 		</p>
 		<p>
-		    <label><%=l(:"response_time.label_resolved_status")%></label>
+		    <label><%=l(:"rt.label_resolved_status")%></label>
 		    <%= select_tag 'settings[resolved_status]',
 		        options_from_collection_for_select(IssueStatus.order("name"), :id, :name, @settings['resolved_status']) %>
 		</p>
 		<p>
-		    <label><%=l(:"response_time.label_blocked_status")%></label>
+		    <label><%=l(:"rt.label_blocked_status")%></label>
 		    <%= select_tag 'settings[blocked_status]',
 		        options_from_collection_for_select(IssueStatus.order("name"), :id, :name, @settings['blocked_status']) %>
 		</p>
 		<p>
-		    <label><%=l(:"response_time.label_refused_status")%></label>
+		    <label><%=l(:"rt.label_refused_status")%></label>
 		    <%= select_tag 'settings[refused_status]',
 		        options_from_collection_for_select(IssueStatus.order("name"), :id, :name, @settings['refused_status']) %>
+		</p>
+		<p>
+		    <label><%=l(:"rt.label_closed_status")%></label>
+		    <%= select_tag 'settings[closed_status]',
+		        options_from_collection_for_select(IssueStatus.order("name"), :id, :name, @settings['closed_status']) %>
 		</p>
 	</fieldset>
 </div>

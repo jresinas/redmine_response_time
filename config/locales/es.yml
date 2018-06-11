@@ -1,7 +1,9 @@
 es:
   project_module_response_time: Tiempo de respuesta
   permission_view_response_time: Ver tiempo de respuesta
-  response_time:
+  permission_view_response_time_report: Ver informe de tiempo de respuesta
+  rt:
+    label_response_time_reports: Informe de tiempo de respuesta
     label_accepted_response_time: Tiempo de respuesta aceptada
     label_resolved_response_time: Tiempo de respuesta resuelta
     label_blocked_response_time: Tiempo de respuesta bloqueada
@@ -10,3 +12,25 @@ es:
     label_resolved_status: Estado resuelta
     label_blocked_status: Estado bloqueada
     label_refused_status: Estado rechazada
+    label_location_field: Campo de lugar
+    label_accepted_status: Estado aceptada
+    label_resolved_status: Estado resuelta
+    label_blocked_status: Estado bloqueada
+    label_refused_status: Estado rechazada
+    label_closed_status: Estado cerrada
+    label_location: Lugar
+    label_first_accepted: Primera Aceptada
+    label_last_accepted: Última Aceptada
+    label_first_resolved: Primera Resuelta
+    label_last_resolved: Última Resuelta
+    label_first_blocked: Primera Bloqueada
+    label_last_blocked: Última bloqueada
+    label_first_refused: Primera Rechazada
+    label_last_refused: Última Rechazada
+    label_first_closed: Primera Cerrada
+    label_last_closed: Última Cerrada
+    label_rt_accepted: TR Aceptada
+    label_rt_resolved: TR Resuelta
+    label_rt_blocked: TR Bloqueada
+    label_rt_refused: TR Rechazada
+    label_search_by_versions: Buscar por versiones
