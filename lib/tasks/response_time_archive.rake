@@ -13,7 +13,7 @@ CF_LUGAR_ID = 69
 namespace :response_time do
 	desc "Crea un repositorio para generar los informes de seguimiento de Soporte Interno y Calidad"
 	task :generate_archive => :environment do
-		headers = ["Identificador","Tipo de Ticketing","id Proyecto","Asunto","Versión prevista","Lugar","Categoría","Prioridad","Creado","Primera Aceptada","Última Aceptada","Primera Resuelta","Última Resuelta","Primera Bloqueada","Última bloqueada","Primera Rechazada","Última Rechazada","Primera Cerrada","Última Cerrada","TR Aceptada","TR Resuelta","TR Bloqueada","TR Rechazada"]
+		headers = ["Identificador","Tipo de Ticketing","id Proyecto","Asunto","Versión prevista","Lugar","Categoría","Prioridad","Creado","Primera Aceptada","Última Aceptada","Primera Resuelta","Última Resuelta","Primera Bloqueada","Última bloqueada","Primera Rechazada","Última Rechazada","Primera Cerrada","Última Cerrada","TR Aceptada","TR Resuelta","TR Bloqueada","TR Rechazada","Fecha Inicio","Fecha Fin","Estado","% (avance)"]
 		results = [headers]
 
 		projects = Project.find([TICKETING_PROJECT_ID, CALIDAD_PROJECT_ID])
@@ -68,6 +68,14 @@ namespace :response_time do
 			result << (i.rt_blocked ? (i.rt_blocked/3600).round(2) : '-')
 			#TR Rechazada
 			result << (i.rt_refused ? (i.rt_refused/3600).round(2) : '-')
+			#Fecha Inicio
+			result << (i.start_date ? i.start_date.strftime('%Y-%m-%d %H:%M:%S') : '-')
+			#Fecha Fin
+			result << (i.due_date ? i.due_date.strftime('%Y-%m-%d %H:%M:%S') : '-')
+			#Estado
+			result << (i.status ? i.status.name : '-')
+			#% avance
+			result << (i.done_ratio ? i.done_ratio : '-')
 
 			results << result
 		end
