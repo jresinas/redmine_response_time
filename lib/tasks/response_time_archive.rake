@@ -13,12 +13,12 @@ CF_LUGAR_ID = 69
 namespace :response_time do
 	desc "Crea un repositorio para generar los informes de seguimiento de Soporte Interno y Calidad"
 	task :generate_archive => :environment do
-		headers = ["Identificador","Tipo de Ticketing","id Proyecto","Asunto","Versión prevista","Lugar","Categoría","Prioridad","Creado","Primera Aceptada","Última Aceptada","Primera Resuelta","Última Resuelta","Primera Bloqueada","Última bloqueada","Primera Rechazada","Última Rechazada","Primera Cerrada","Última Cerrada","TR Aceptada","TR Resuelta","TR Bloqueada","TR Rechazada","Fecha Inicio","Fecha Fin","Estado","% (avance)"]
+		headers = ["Identificador","Tipo de Ticketing","id Petición","Asunto","Versión prevista","Lugar","Categoría","Prioridad","Creado","Primera Aceptada","Última Aceptada","Primera Resuelta","Última Resuelta","Primera Bloqueada","Última bloqueada","Primera Rechazada","Última Rechazada","Primera Cerrada","Última Cerrada","TR Aceptada","TR Resuelta","TR Bloqueada","TR Rechazada","Fecha Inicio","Fecha Fin","Estado","% (avance)"]
 		results = [headers]
 
 		projects = Project.find([TICKETING_PROJECT_ID, CALIDAD_PROJECT_ID])
 
-		issues = Issue.where({project: projects,tracker_id: TASKS_TRACKER_ID, closed_on: (Date.today - 1.year).beginning_of_year..Date.today}).order(:created_on)
+		issues = Issue.where({project: projects,tracker_id: TASKS_TRACKER_ID, created_on: (Date.today - 2.years).beginning_of_year..Date.today}).order(:created_on)
 
 		issues.each do |i|
 			result = []
@@ -26,8 +26,8 @@ namespace :response_time do
 			result << i.project.identifier
 			#Tipo de Ticketing
 			result << (cf = CustomValue.where("customized_id = ? AND customized_type = 'Issue' AND custom_field_id = ?", i.id, CF_TIPO_TICKETING_ID).first) ? (cf.present? ? cf.value : '') : 0
-			#id Proyecto
-			result << i.project_id
+			#id Petición
+			result << i.id
 			#Asunto
 			result << i.subject
 			#Versión prevista
